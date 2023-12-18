@@ -26,4 +26,4 @@ This project, written in C, creates threads using semaphores, preemption, and qu
         - ```./sem_simple```  - Test semaphores using a very simple logic
         - ```./uthread_hello```  - Test User Level Threading
         - ```./uthread_yield```  - Test yield in User Level Threading
-        - ```./thread_testing``` - Test all attributes of all files
+        - ```./thread_testing``` - Test queue
