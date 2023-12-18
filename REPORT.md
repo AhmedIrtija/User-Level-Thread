@@ -1,5 +1,5 @@
 # ECS150: Project #2 - User-level thread library
-____Sachin Loecher and Ahmed Irtija____
+____Ahmed Irtija____
 
 The aim of this project was to implement User-Level Thread
 
@@ -37,7 +37,7 @@ Iterate starts at the oldest/last data node in the queue, applies the given
 function to its data, and then moves to the previous node and so on. And so it
 iterates till it reaches the beginning/most recent item of the queue.
 
-Phase 2: uthread API
+## Phase 2: uthread API
 In this phase, we implemented a simple thread management API, which allows
 applications to use multithreading through an interface.
 
