@@ -27,6 +27,12 @@ struct test4 {
 
 #define clamp(x, y) (((x) <= (y)) ? (x) : (y))
 
+
+/* 
+ * Consumer function:
+ * - Consumes values from the shared buffer based on a random number of items to take (n).
+ * - Uses semaphores for synchronization to ensure proper access to the shared buffer.
+ */
 static void consumer(void* arg)
 {
 	struct test4 *t = (struct test4*)arg;
@@ -50,6 +56,12 @@ static void consumer(void* arg)
 	}
 }
 
+
+/* 
+ * Producer function:
+ * - Produces values and puts them into the shared buffer based on a random number of items to put (n).
+ * - Creates a consumer thread and uses semaphores for synchronization.
+ */
 static void producer(void* arg)
 {
 	struct test4 *t = (struct test4*)arg;
@@ -75,6 +87,10 @@ static void producer(void* arg)
 	}
 }
 
+
+/*
+ * Helper function to convert command line arguments to unsigned integers.
+ */
 static unsigned int get_argv(char *argv)
 {
 	long int ret = strtol(argv, NULL, 0);
@@ -85,6 +101,14 @@ static unsigned int get_argv(char *argv)
 	return ret;
 }
 
+
+/*
+ * Main function:
+ * - Initializes the test structure with user-provided or default values.
+ * - Creates semaphores for synchronization.
+ * - Runs the producer function as a thread.
+ * - Destroys semaphores after the completion of the program.
+ */
 int main(int argc, char **argv)
 {
 	struct test4 t;

@@ -15,7 +15,6 @@ all: $(lib)
 deps := $(patsubst %.o, %.d, $(objs))
 -include $(deps)
 
-## TODO: Phase 1
 
 $(targets): $(objs)
 	@echo "CC $@"

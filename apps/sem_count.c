@@ -28,8 +28,8 @@ static void thread2(void *arg)
 
 	while (t->x < t->maxcount) {
 		printf("thread 2, x = %zu\n", t->x++);
-		sem_up(t->sem1);
-		sem_down(t->sem2);
+		sem_up(t->sem1);  // Signal that thread2 has finished printing
+		sem_down(t->sem2);  // Wait for thread1 to finish printing
 	}
 }
 
@@ -37,12 +37,12 @@ static void thread1(void *arg)
 {
 	struct test3 *t = (struct test3*)arg;
 
-	uthread_create(thread2, arg);
+	uthread_create(thread2, arg);   // Create thread2
 
 	while (t->x < t->maxcount) {
-		sem_down(t->sem1);
+		sem_down(t->sem1);		// Wait for thread2 to finish printing
 		printf("thread 1, x = %zu\n", t->x++);
-		sem_up(t->sem2);
+		sem_up(t->sem2);		// Signal that thread1 has finished printing
 	}
 }
 
